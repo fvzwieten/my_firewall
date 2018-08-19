@@ -1,0 +1,21 @@
+---
+
+# tasks file for my_firewall
+#
+- name: install firewalld
+  yum:
+    name: firewalld
+    state: latest
+
+- name: start firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: open up firewall for http
+  firewalld:
+    service: http
+    state: enabled
+    immediate: true
+    permanent: true
